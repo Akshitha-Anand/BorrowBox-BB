@@ -10,14 +10,26 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Connect to DB
-connectDB();
+const authRoutes = require('./routes/auth');
 
-// Routes placeholder
+// Connect to DB if not in test mode
+if (process.env.NODE_ENV !== 'test') {
+  connectDB();
+}
+
+// Auth routes
+app.use('/api/auth', authRoutes);
+
+// Health check
 app.get('/', (req, res) => {
-  res.send('BorrowBox API is running');
+  res.json({ message: 'BorrowBox API is running' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+// Only start listening when not in test mode
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+}
+
+module.exports = app;
