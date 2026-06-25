@@ -1,3 +1,5 @@
+import raspberryPi from '../assets/raspberry-pi-4.jpeg';
+import coat from '../assets/coat.jpeg';
 export const SAMPLE_ITEMS = [
   {
     _id: '1',
@@ -104,7 +106,7 @@ export const SAMPLE_ITEMS = [
     type: 'sale',
     price: 4500,
     listingStatus: 'Pending',
-    image: 'https://images.unsplash.com/photo-1632411832533-1f0c13b21c7c?w=600&q=80',
+    image: raspberryPi,
     owner: {
       _id: 'u5',
       name: 'David Chen',
@@ -128,7 +130,7 @@ export const SAMPLE_ITEMS = [
     type: 'borrow',
     priceType: 'day',
     listingStatus: 'Pending',
-    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80',
+    image: coat,
     owner: {
       _id: 'u6',
       name: 'Lucy Kim',
