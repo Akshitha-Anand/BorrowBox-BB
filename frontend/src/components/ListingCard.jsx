@@ -15,6 +15,7 @@ export default function ListingCard({ item, onView }) {
     description = '',
     category = '',
     condition = '',
+    type = 'borrow',
     price = 0,
     priceType = 'day',
   } = item || {};
@@ -48,8 +49,13 @@ export default function ListingCard({ item, onView }) {
         <p className="mt-1 text-sm text-textSecondary line-clamp-2">{description}</p>
 
         {/* Category & Condition badges */}
-        {(category || condition) && (
+        {(category || condition || type) && (
           <div className="mt-3 flex flex-wrap items-center gap-2">
+            {type && (
+              <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${type === 'sale' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
+                {type === 'sale' ? 'For Sale' : 'For Borrow'}
+              </span>
+            )}
             {category && <span className="badge">{category}</span>}
             {condition && (
               <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-textSecondary">
@@ -61,15 +67,39 @@ export default function ListingCard({ item, onView }) {
 
         {/* Price & Heart */}
         <div className="mt-3 flex items-center justify-between">
-          <span className="text-base font-bold text-primary">
-            ₹{price} <span className="text-xs font-normal text-textSecondary">/ {priceType}</span>
-          </span>
+          {type === 'sale' ? (
+            <span className="text-base font-bold text-primary">
+              ₹{price}
+            </span>
+          ) : (
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-primary">
+                Available for Borrowing
+              </span>
+              <span className="text-xs text-textSecondary">
+                {priceType ? `per ${priceType}` : ''}
+              </span>
+            </div>
+          )}
           <button
             aria-label="Add to wishlist"
             className="rounded-full p-2 text-gray-300 transition-colors hover:text-red-400 hover:bg-red-50"
             onClick={(e) => { e.stopPropagation(); }}
           >
             <Heart className="h-5 w-5" />
+          </button>
+        </div>
+        
+        {/* Action Button */}
+        <div className="mt-4">
+          <button
+            className="btn-primary w-full text-sm py-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (onView) onView(_id);
+            }}
+          >
+            {type === 'sale' ? 'Buy Now' : 'Borrow Now'}
           </button>
         </div>
       </div>

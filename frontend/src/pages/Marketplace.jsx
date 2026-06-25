@@ -4,72 +4,11 @@ import { Search, SlidersHorizontal } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ListingCard from '../components/ListingCard';
+import { SAMPLE_ITEMS } from '../data/sampleItems';
 
 const CATEGORIES = ['All', 'Textbooks', 'Electronics', 'Lab Equipment', 'Tools', 'Other'];
 
-/* Placeholder items for UI display */
-const SAMPLE_ITEMS = [
-  {
-    _id: '1',
-    title: 'Scientific Calculator',
-    description: 'Casio FX-991ES Plus, barely used. Perfect for engineering math.',
-    category: 'Electronics',
-    condition: 'Like New',
-    price: 50,
-    priceType: 'day',
-    image: '',
-  },
-  {
-    _id: '2',
-    title: 'Arduino Uno Kit',
-    description: 'Complete starter kit with sensors, breadboard, jumper wires and more.',
-    category: 'Electronics',
-    condition: 'Good',
-    price: 150,
-    priceType: 'day',
-    image: '',
-  },
-  {
-    _id: '3',
-    title: 'Engineering Drawing Kit',
-    description: 'Drafter, set squares, compass, protractor — full set.',
-    category: 'Tools',
-    condition: 'Good',
-    price: 30,
-    priceType: 'day',
-    image: '',
-  },
-  {
-    _id: '4',
-    title: 'Data Structures Textbook',
-    description: 'Cormen CLRS 3rd Edition. Highlighted but in great shape.',
-    category: 'Textbooks',
-    condition: 'Fair',
-    price: 80,
-    priceType: 'week',
-    image: '',
-  },
-  {
-    _id: '5',
-    title: 'Raspberry Pi 4',
-    description: '4GB RAM model with case, power supply and SD card.',
-    category: 'Electronics',
-    condition: 'Like New',
-    price: 200,
-    priceType: 'day',
-    image: '',
-  },
-  {
-    _id: '6',
-    title: 'Chemistry Lab Coat',
-    description: 'White lab coat, size M. Washed and ironed.',
-    category: 'Lab Equipment',
-    condition: 'Good',
-    price: 20,
-    priceType: 'day',
-    image: '',
-  },
-];
+
 
 export default function Marketplace() {
   const navigate = useNavigate();
