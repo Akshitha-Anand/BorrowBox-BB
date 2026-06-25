@@ -1,77 +1,9 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, User, MessageCircle, ShoppingBag, Clock } from 'lucide-react';
+import { ArrowLeft, User, ShoppingBag, Clock } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
-const SAMPLE_ITEMS = [
-  {
-    _id: '1',
-    title: 'Scientific Calculator',
-    description: 'Casio FX-991ES Plus, barely used. Perfect for engineering math.',
-    category: 'Electronics',
-    condition: 'Like New',
-    type: 'sale',
-    price: 500,
-    image: '',
-    owner: { name: 'Alex John', department: 'Engineering', year: 2 },
-  },
-  {
-    _id: '2',
-    title: 'Arduino Uno Kit',
-    description: 'Complete starter kit with sensors, breadboard, jumper wires and more.',
-    category: 'Electronics',
-    condition: 'Good',
-    type: 'borrow',
-    priceType: 'day',
-    image: '',
-    owner: { name: 'Sarah Lee', department: 'Computer Science', year: 3 },
-  },
-  {
-    _id: '3',
-    title: 'Engineering Drawing Kit',
-    description: 'Drafter, set squares, compass, protractor — full set.',
-    category: 'Tools',
-    condition: 'Good',
-    type: 'sale',
-    price: 300,
-    image: '',
-    owner: { name: 'Mike Smith', department: 'Mechanical', year: 1 },
-  },
-  {
-    _id: '4',
-    title: 'Data Structures Textbook',
-    description: 'Cormen CLRS 3rd Edition. Highlighted but in great shape.',
-    category: 'Textbooks',
-    condition: 'Fair',
-    type: 'borrow',
-    priceType: 'week',
-    image: '',
-    owner: { name: 'Emma Doe', department: 'Software Engineering', year: 2 },
-  },
-  {
-    _id: '5',
-    title: 'Raspberry Pi 4',
-    description: '4GB RAM model with case, power supply and SD card.',
-    category: 'Electronics',
-    condition: 'Like New',
-    type: 'sale',
-    price: 4500,
-    image: '',
-    owner: { name: 'David Chen', department: 'Computer Science', year: 4 },
-  },
-  {
-    _id: '6',
-    title: 'Chemistry Lab Coat',
-    description: 'White lab coat, size M. Washed and ironed.',
-    category: 'Lab Equipment',
-    condition: 'Good',
-    type: 'borrow',
-    priceType: 'day',
-    image: '',
-    owner: { name: 'Lucy Kim', department: 'Chemistry', year: 1 },
-  },
-];
+import { SAMPLE_ITEMS } from '../data/sampleItems';
 
 export default function ItemDetails() {
   const { id } = useParams();
@@ -159,36 +91,46 @@ export default function ItemDetails() {
               <p className="text-sm leading-relaxed text-textSecondary">{ITEM.description}</p>
             </div>
 
-            {/* Owner */}
-            <div className="mt-6 flex items-center gap-3 rounded-xl bg-background p-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                <User className="h-5 w-5 text-primary" />
+            {/* Owner — clickable to seller profile */}
+            <div
+              className="mt-6 flex items-center gap-3 rounded-xl bg-background p-4 cursor-pointer hover:bg-primary/5 transition-colors"
+              onClick={() => navigate(`/seller/${ITEM.owner._id}`)}
+            >
+              <div className="h-10 w-10 rounded-full overflow-hidden bg-primary/10 flex-shrink-0">
+                {ITEM.owner.avatar ? (
+                  <img src={ITEM.owner.avatar} alt={ITEM.owner.name} className="h-full w-full object-cover" />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center">
+                    <User className="h-5 w-5 text-primary" />
+                  </div>
+                )}
               </div>
-              <div>
+              <div className="flex-1">
                 <p className="text-sm font-semibold text-textPrimary">{ITEM.owner.name}</p>
                 <p className="text-xs text-textSecondary">
-                  {ITEM.owner.department} • Year {ITEM.owner.year}
+                  {ITEM.owner.department} • {ITEM.owner.year}
                 </p>
               </div>
+              <span className="text-xs text-primary font-medium">View Profile →</span>
             </div>
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-col gap-3">
               {ITEM.type === 'sale' ? (
-                <button 
+                <button
                   className="btn-primary w-full group py-3 text-base"
-                  onClick={() => navigate('/profile')}
+                  onClick={() => navigate(`/seller/${ITEM.owner._id}`)}
                 >
                   <ShoppingBag className="h-5 w-5" />
-                  Buy Now
+                  Buy Now — Contact Seller
                 </button>
               ) : (
-                <button 
+                <button
                   className="btn-primary w-full group py-3 text-base"
-                  onClick={() => navigate('/profile')}
+                  onClick={() => navigate(`/seller/${ITEM.owner._id}`)}
                 >
                   <Clock className="h-5 w-5" />
-                  Borrow Now
+                  Borrow Now — Contact Seller
                 </button>
               )}
             </div>

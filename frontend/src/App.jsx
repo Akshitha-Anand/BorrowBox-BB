@@ -8,6 +8,7 @@ import AddItem from './pages/AddItem';
 import MyListings from './pages/MyListings';
 import Profile from './pages/Profile';
 import ItemDetails from './pages/ItemDetails';
+import SellerProfile from './pages/SellerProfile';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/my-listings" element={<MyListings />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/item/:id" element={<ItemDetails />} />
+        <Route path="/seller/:sellerId" element={<SellerProfile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
