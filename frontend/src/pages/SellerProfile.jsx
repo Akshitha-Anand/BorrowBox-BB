@@ -226,12 +226,12 @@ export default function SellerProfile() {
                     </div>
                     <span
                       className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium flex-shrink-0 ${
-                        listing.type === 'sale'
+                        listing.listingStatus === 'Sold'
                           ? 'bg-green-100 text-green-800'
-                          : 'bg-blue-100 text-blue-800'
+                          : 'bg-yellow-100 text-yellow-800'
                       }`}
                     >
-                      {listing.type === 'sale' ? 'Active' : 'Active'}
+                      {listing.listingStatus || 'Pending'}
                     </span>
                   </div>
                 ))}

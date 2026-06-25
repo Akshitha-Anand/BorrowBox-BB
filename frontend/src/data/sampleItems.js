@@ -7,6 +7,7 @@ export const SAMPLE_ITEMS = [
     condition: 'Like New',
     type: 'sale',
     price: 500,
+    listingStatus: 'Sold',
     image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80',
     owner: {
       _id: 'u1',
@@ -30,6 +31,7 @@ export const SAMPLE_ITEMS = [
     condition: 'Good',
     type: 'borrow',
     priceType: 'day',
+    listingStatus: 'Pending',
     image: 'https://images.unsplash.com/photo-1553406830-ef2513450d76?w=600&q=80',
     owner: {
       _id: 'u2',
@@ -53,6 +55,7 @@ export const SAMPLE_ITEMS = [
     condition: 'Good',
     type: 'sale',
     price: 300,
+    listingStatus: 'Sold',
     image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80',
     owner: {
       _id: 'u3',
@@ -76,6 +79,7 @@ export const SAMPLE_ITEMS = [
     condition: 'Fair',
     type: 'borrow',
     priceType: 'week',
+    listingStatus: 'Pending',
     image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80',
     owner: {
       _id: 'u4',
@@ -99,6 +103,7 @@ export const SAMPLE_ITEMS = [
     condition: 'Like New',
     type: 'sale',
     price: 4500,
+    listingStatus: 'Pending',
     image: 'https://images.unsplash.com/photo-1632411832533-1f0c13b21c7c?w=600&q=80',
     owner: {
       _id: 'u5',
@@ -122,6 +127,7 @@ export const SAMPLE_ITEMS = [
     condition: 'Good',
     type: 'borrow',
     priceType: 'day',
+    listingStatus: 'Pending',
     image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80',
     owner: {
       _id: 'u6',

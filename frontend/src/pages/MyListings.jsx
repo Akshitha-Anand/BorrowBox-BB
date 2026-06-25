@@ -3,34 +3,13 @@ import { Plus, Package } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ListingCard from '../components/ListingCard';
-
-/* Placeholder listings for UI display */
-const MY_ITEMS = [
-  {
-    _id: '1',
-    title: 'Arduino Uno Kit',
-    description: 'Complete starter kit with sensors, breadboard, jumper wires.',
-    category: 'Electronics',
-    condition: 'Good',
-    price: 150,
-    priceType: 'day',
-    image: '',
-  },
-  {
-    _id: '2',
-    title: 'Data Structures Textbook',
-    description: 'Cormen CLRS 3rd Edition.',
-    category: 'Textbooks',
-    condition: 'Fair',
-    price: 80,
-    priceType: 'week',
-    image: '',
-  },
-];
+import { SAMPLE_ITEMS } from '../data/sampleItems';
 
 export default function MyListings() {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user') || 'null');
+
+  /* Use all sample items as "my listings" for demo — they all have proper images */
+  const MY_ITEMS = SAMPLE_ITEMS;
 
   return (
     <div className="min-h-screen bg-background page-transition">
@@ -53,7 +32,19 @@ export default function MyListings() {
         {MY_ITEMS.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 animate-slide-up">
             {MY_ITEMS.map((item) => (
-              <ListingCard key={item._id} item={item} onView={(id) => navigate(`/item/${id}`)} />
+              <div key={item._id} className="relative">
+                {/* Status badge overlay */}
+                <span
+                  className={`absolute top-3 left-3 z-10 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold shadow ${
+                    item.listingStatus === 'Sold'
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-yellow-100 text-yellow-800'
+                  }`}
+                >
+                  {item.listingStatus || 'Pending'}
+                </span>
+                <ListingCard item={item} onView={(id) => navigate(`/item/${id}`)} />
+              </div>
             ))}
           </div>
         ) : (

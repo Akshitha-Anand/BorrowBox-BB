@@ -146,14 +146,12 @@ export default function Profile() {
                     </div>
                     <span
                       className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium flex-shrink-0 ${
-                        listing.condition === 'Like New'
+                        listing.listingStatus === 'Sold'
                           ? 'bg-green-100 text-green-800'
-                          : listing.condition === 'Good'
-                          ? 'bg-blue-100 text-blue-800'
-                          : 'bg-gray-100 text-gray-600'
+                          : 'bg-yellow-100 text-yellow-800'
                       }`}
                     >
-                      {listing.condition === 'Like New' ? 'Active' : listing.condition === 'Good' ? 'Active' : 'Inactive'}
+                      {listing.listingStatus || 'Pending'}
                     </span>
                   </div>
                 ))}
